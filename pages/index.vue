@@ -25,7 +25,8 @@
       <section>
         <h1 class='text-3xl text-center'>经典永流传</h1>
         <div class='flex items-center justify-center'>
-          <img src='/avatar.png' alt='avatar of sjx' class='rounded-full w-32 h-32'>
+          <img src='/avatar.png' alt='avatar of sjx'
+               class='rounded-full w-36 h-36 border-green-600 border-4 p-1.5'>
           <div class='ml-14'>
             <div class='w-5 h-5 bg-black triangle inline-block'></div>
             <div class='bg-black inline-block -ml-4 p-5'>
