@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class='w-full bg-green-500 py-4'>
+    <header class='fixed w-full h-12 pt-3 -mt-12 bg-green-500'>
       <nav class='text-center'>
         <NuxtLink to='/'>
           <span class='px-5 text-lg font-medium text-white'>首页</span>
@@ -16,7 +16,7 @@
         </NuxtLink>
       </nav>
     </header>
-    <main>
+    <main class='mt-12'>
       <section class='flex items-center bg-gray-800 px-44'>
         <h1 class='text-9xl flex-wrap text-white font-serif align-middle'>BBKing SJX</h1>
         <img src='/background.png' alt='background_image'>
