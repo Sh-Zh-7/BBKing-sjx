@@ -1,69 +1,48 @@
-# BBKing-sjx
+<h1 align="center">BB王-SJX</h1>
 
-## Build Setup
+# 这是什么？
 
-```bash
-# install dependencies
-$ yarn install
+这是SJX粉（fu）丝（qin）为SJX编写的网站。专门收录SJX的惊人语录和各种鬼畜二创。
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+这些语录或者二创源自SJX所在的各种QQ群/讨论组，这些群一旦解散，这些人类圣经就很难找回了。
 
-# build for production and launch server
-$ yarn build
-$ yarn start
+为了拯救人类，BBKing-SJX这个网站便应运而生。
 
-# generate static project
-$ yarn generate
+
+
+# 仓库组成？
+
+本仓库主要包含以下三个部分：
+
+- Vue + Nuxtjs编写的前端部分；
+- Serverless + Go编写的后端部分；
+- SJX语录的文档部分；
+
+你可以通过以下指令切换到对应的项目：
+
+```shell
+git branch frontend # 切换到前端
+git branch backend	# 切换到后端
+git branch main			# 切换到文档
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
-
-## Special Directories
-
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
-
-### `assets`
-
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
-
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
 
 
-### `pages`
+# 如何贡献？
 
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
+本仓库以收录SJX语录和各种鬼畜二创为主。你可以通过以下方式参与到该项目中：
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
+- 直接联系maintainer，让maintainer添加（不推荐，如果你不懂Github那我会考虑）。
+- 在Github上开一个pull request，配合maintainer编写的CI脚本直接部署到服务器上（强烈推荐）。
 
-### `plugins`
+另外，本项目纯属maintainer一时兴起之作，从技术和性能等角度并没有什么亮点。
 
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
+当然如果你想要贡献自己的代码，那我也非常欢迎:)
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
 
-### `static`
 
-This directory contains your static files. Each file inside this directory is mapped to `/`.
+# 许可
 
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
+[Apache-2.0 License](LICENSE)
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+Copyright ©️ 2021 sh-zh-7
