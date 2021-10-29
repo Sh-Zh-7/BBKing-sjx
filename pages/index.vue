@@ -7,9 +7,9 @@
       <img src='/background.png' alt='background_image'>
     </section>
 
-    <section>
+    <section class='pb-10'>
       <Title title='经典永流传' />
-      <div class='flex items-center justify-center'>
+      <div class='flex items-center justify-center pt-6'>
         <div class='relative'>
           <img src='/avatar.png' alt='avatar of sjx'
                class='rounded-full w-36 h-36 border-green-600 border-4'>
