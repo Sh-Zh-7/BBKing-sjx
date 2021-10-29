@@ -1,5 +1,5 @@
 <template>
-  <main class='mt-12'>
+  <main>
     <section class='flex items-center bg-gray-800 px-44'>
       <h1 class='text-9xl flex-wrap text-white font-serif align-middle'>
         BBKing SJX
