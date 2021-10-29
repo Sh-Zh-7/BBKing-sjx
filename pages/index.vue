@@ -23,13 +23,16 @@
       </section>
 
       <section>
-        <p id="random-quote" class='text-3xl text-center mt-7'>经典永流传</p>
+        <p id="random-quote" class='text-3xl text-center mt-7 mb-10'>
+          &nbsp; 经典永流传 &nbsp;
+        </p>
         <div class='flex items-center justify-center'>
           <div class='relative'>
             <img src='/avatar.png' alt='avatar of sjx'
                  class='rounded-full w-36 h-36 border-green-600 border-4'>
             <!-- 做动画用的辅助标签 -->
-            <div id='animate-assist-tag' class='absolute w-36 h-36 top-0 rounded-full bg-green-600'></div>
+            <div id='animate-assist-tag'
+                 class='absolute w-36 h-36 top-0 rounded-full bg-green-600'></div>
           </div>
           <div class='ml-14'>
             <div class='w-5 h-5 triangle inline-block border-gray-600 border-2'></div>
