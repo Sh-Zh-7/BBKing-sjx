@@ -3,7 +3,7 @@ export default {
   head: {
     title: 'BBの神：SJX',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'zh-CN'
     },
     meta: [
       { charset: 'utf-8' },
