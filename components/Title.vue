@@ -1,5 +1,5 @@
 <template>
-  <p class='text-3xl text-center mt-7 mb-10'>
+  <p class='text-4xl text-center font-serif mt-7 mb-10'>
     &nbsp; {{ title }} &nbsp;
   </p>
 </template>
