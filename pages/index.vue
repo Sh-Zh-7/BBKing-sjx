@@ -25,8 +25,12 @@
       <section>
         <p id="random-quote" class='text-3xl text-center mt-7'>经典永流传</p>
         <div class='flex items-center justify-center'>
-          <img src='/avatar.png' alt='avatar of sjx'
-               class='rounded-full w-36 h-36 border-green-400 border-4 p-1.5'>
+          <div class='relative'>
+            <img src='/avatar.png' alt='avatar of sjx'
+                 class='rounded-full w-36 h-36 border-green-600 border-4'>
+            <!-- 做动画用的辅助标签 -->
+            <div id='animate-assist-tag' class='absolute w-36 h-36 top-0 rounded-full bg-green-600'></div>
+          </div>
           <div class='ml-14'>
             <div class='w-5 h-5 triangle inline-block border-gray-600 border-2'></div>
             <div class='inline-block -ml-4 p-5 border-gray-600 border-2 rounded-2xl shadow-xl'>
@@ -54,6 +58,22 @@
 }
 #random-quote::after {
   border-color: transparent transparent rgb(52, 211, 153) rgb(52, 211, 153);
+}
+
+@keyframes ripple {
+  0%{
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100%{
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+#animate-assist-tag {
+  animation: ripple 1.5s linear infinite;
+  z-index: -1;
 }
 
 .triangle {
