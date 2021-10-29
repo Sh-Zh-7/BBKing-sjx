@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'BBKing-sjx',
+    title: 'BBの神：SJX',
     htmlAttrs: {
       lang: 'en'
     },
