@@ -4,7 +4,7 @@
       <h1 class='text-9xl flex-wrap text-white font-serif align-middle'>
         BBKing SJX
       </h1>
-      <img src='/static/man.png' alt='background_image'>
+      <img src='/man.png' alt='background_image'>
     </section>
 
     <section class='pb-10'>
@@ -30,7 +30,7 @@
 
 <style>
 .background {
-  background-image: url("/static/background.jpeg");
+  background-image: url("/background.jpeg");
   background-size: contain;
 }
 
