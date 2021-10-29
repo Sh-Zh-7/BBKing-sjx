@@ -8,9 +8,7 @@
     </section>
 
     <section>
-      <p id="random-quote" class='text-3xl text-center mt-7 mb-10'>
-        &nbsp; 经典永流传 &nbsp;
-      </p>
+      <Title title='经典永流传' />
       <div class='flex items-center justify-center'>
         <div class='relative'>
           <img src='/avatar.png' alt='avatar of sjx'
@@ -31,19 +29,6 @@
 </template>
 
 <style>
-#random-quote::before, #random-quote::after {
-  content: "";
-  font-size: 0;
-  border-width: 7px 150px;
-}
-
-#random-quote::before {
-  border-color: transparent rgb(52, 211, 153) rgb(52, 211, 153) transparent;
-}
-#random-quote::after {
-  border-color: transparent transparent rgb(52, 211, 153) rgb(52, 211, 153);
-}
-
 @keyframes ripple {
   0%{
     transform: scale(1);
@@ -72,7 +57,9 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import Title from '~/components/Title.vue'
 
 export default Vue.extend({
+  components: { Title }
 })
 </script>
