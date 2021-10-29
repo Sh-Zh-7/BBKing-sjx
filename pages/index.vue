@@ -1,10 +1,10 @@
 <template>
   <main>
-    <section class='flex items-center bg-gray-800 px-44'>
+    <section class='flex items-center bg-gray-800 px-44 background'>
       <h1 class='text-9xl flex-wrap text-white font-serif align-middle'>
         BBKing SJX
       </h1>
-      <img src='/background.png' alt='background_image'>
+      <img src='/static/man.png' alt='background_image'>
     </section>
 
     <section class='pb-10'>
@@ -29,6 +29,11 @@
 </template>
 
 <style>
+.background {
+  background-image: url("/static/background.jpeg");
+  background-size: contain;
+}
+
 @keyframes ripple {
   0%{
     transform: scale(1);
