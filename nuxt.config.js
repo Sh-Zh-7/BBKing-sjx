@@ -1,5 +1,5 @@
 export default {
-  target: 'static',
+  target: 'server',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'BBの神：SJX',
@@ -41,6 +41,9 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
   ],
+  serverMiddleware: {
+    '/api': '~/api'
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
