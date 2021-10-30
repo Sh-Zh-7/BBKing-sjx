@@ -52,20 +52,22 @@ export default {
   data: () => ({
     quote: '',
     db: null,
-    // 用来追踪object storage中的索引
-    // 注意索引是从1开始的
-    cur_index: 1,
-    max_index: 1,
+    // object storage的索引，从1开始
+    curIndex: 1,
+    maxIndex: 1,
   }),
 
   created() {
+    this.curIndex = this.$store.state.curIndex;
+    this.maxIndex = this.$store.state.maxIndex;
+
     if (process.client) {
       // 打开indexedDB, 创建object storage
       const request = indexedDB.open(DB_NAME);
       request.onsuccess = (event) => {
         this.db = event.target.result;
         // 查看之前的数据
-        getQuote(this.db, this.cur_index, async (event) => {
+        getQuote(this.db, this.curIndex, async (event) => {
           if (event.target.result) {
             // 复用之前的数据
             this.quote = event.target.result.quote;
@@ -92,26 +94,35 @@ export default {
       };
     }
   },
+  beforeDestroy() {
+    this.$store.commit(
+      "setIndexes",
+      {
+        curIndex: this.curIndex,
+        maxIndex: this.maxIndex,
+      }
+    );
+  },
   methods: {
     async getNextQuote() {
-      this.cur_index++;
-      if (this.cur_index > this.max_index) {
+      this.curIndex++;
+      if (this.curIndex > this.maxIndex) {
         // 如果是一条全新的数据
-        this.max_index = this.cur_index;
+        this.maxIndex = this.curIndex;
 
         this.quote = await this.$axios.$get('/api/saying');
         addQuote(this.db, this.quote);
       } else {
         // 直接从indexedDB缓存中获取
-        getQuote(this.db, this.cur_index, (event) => {
+        getQuote(this.db, this.curIndex, (event) => {
           this.quote = event.target.result.quote;
         })
       }
     },
     getPrevQuote() {
-      if (this.cur_index > 1) {
-        --this.cur_index;
-        getQuote(this.db, this.cur_index, (event) => {
+      if (this.curIndex > 1) {
+        --this.curIndex;
+        getQuote(this.db, this.curIndex, (event) => {
           this.quote = event.target.result.quote;
         })
       } else {
