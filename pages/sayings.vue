@@ -32,6 +32,22 @@ blockquote::after {
 const DB_NAME = 'sayings';
 const STORE_NAME = 'sayings';
 
+function getQuote(db, key, successCb) {
+  const request = db
+    .transaction(STORE_NAME, "readonly")
+    .objectStore(STORE_NAME)
+    .get(key);
+
+  request.onsuccess = successCb;
+}
+
+function addQuote(db, quote) {
+  db
+    .transaction(STORE_NAME, "readwrite")
+    .objectStore(STORE_NAME)
+    .add({ quote });
+}
+
 export default {
   data: () => ({
     quote: '',
@@ -43,18 +59,22 @@ export default {
   }),
 
   created() {
-    // 打开indexedDB, 创建object storage
     if (process.client) {
+      // 打开indexedDB, 创建object storage
       const request = indexedDB.open(DB_NAME);
-      request.onsuccess = async (event) => {
+      request.onsuccess = (event) => {
         this.db = event.target.result;
-
-        // 获取第一条数据并存储
-        this.quote = await this.$axios.$get('/api/saying');
-        this.db
-          .transaction(STORE_NAME, "readwrite")
-          .objectStore(STORE_NAME)
-          .add({ quote: this.quote });
+        // 查看之前的数据
+        getQuote(this.db, this.cur_index, async (event) => {
+          if (event.target.result) {
+            // 复用之前的数据
+            this.quote = event.target.result.quote;
+          } else {
+            // 获取第一条数据并存储
+            this.quote = await this.$axios.$get('/api/saying');
+            addQuote(this.db, this.quote);
+          }
+        })
       };
       request.onupgradeneeded = (evt) => {
         evt.currentTarget.result.createObjectStore(
@@ -80,33 +100,20 @@ export default {
         this.max_index = this.cur_index;
 
         this.quote = await this.$axios.$get('/api/saying');
-        this.db
-          .transaction(STORE_NAME, "readwrite")
-          .objectStore(STORE_NAME)
-          .add({ quote: this.quote });
+        addQuote(this.db, this.quote);
       } else {
         // 直接从indexedDB缓存中获取
-        const request = this.db
-          .transaction(STORE_NAME, "readonly")
-          .objectStore(STORE_NAME)
-          .get(this.cur_index);
-
-        request.onsuccess = (event) => {
+        getQuote(this.db, this.cur_index, (event) => {
           this.quote = event.target.result.quote;
-        }
+        })
       }
     },
     getPrevQuote() {
       if (this.cur_index > 1) {
         --this.cur_index;
-        const request = this.db
-          .transaction(STORE_NAME, "readonly")
-          .objectStore(STORE_NAME)
-          .get(this.cur_index);
-
-        request.onsuccess = (event) => {
+        getQuote(this.db, this.cur_index, (event) => {
           this.quote = event.target.result.quote;
-        }
+        })
       } else {
         alert("没有数据了呕");
       }
