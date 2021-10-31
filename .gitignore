@@ -1,4 +1,6 @@
-# IDE / Editor
+# Common .gitignore shared by every branch
+node_modules
+.nuxt
 .idea
 
 # Vercel CLI
