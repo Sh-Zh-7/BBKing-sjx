@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
 
       - name: Setup Deno
         uses: denoland/setup-deno@v1
@@ -31,12 +31,18 @@ jobs:
         run: deno run --allow-read --allow-write db.ts
 
       - name: Tansfer output db file to web branch
-        run: mv ./bible.db /tmp/bible.db && git checkout web && mv /tmp/bible.db ./bible.db
+        run: |
+          mv ./bible.db /tmp/bible.db
+          git checkout web
+          mv /tmp/bible.db ./bible.db
 
-      - name: Depoly to Vercel
-      - uses: amondnet/vercel-action@v20
-        with:
-          vercel-org-id: ${{ secrets.ORG_ID}}
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-project-id: ${{ secrets.PROJECT_ID}}
-          vercel-args: '--prod'
+      - name: Commit db file for depolyment stage
+      - run: |
+          git config --global user.name 'Sh-Zh-7'
+          git config --global user.email 'zhihaoshen7@qq.com'
+          git add -A
+          git commit -m "feat: update db file"
+          git push
+
+      - name: Depoly to Vercel by web hook
+      - run: curl -X ${{ secrets.WEB_HOOK }}
