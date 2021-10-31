@@ -43,4 +43,4 @@ jobs:
           git push
 
       - name: Depoly to Vercel by web hook
-        run: curl -X ${{ secrets.WEB_HOOK }}
+        run: curl -X POST ${{ secrets.WEB_HOOK }}
