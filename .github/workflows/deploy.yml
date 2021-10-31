@@ -39,8 +39,7 @@ jobs:
           git config --global user.name 'Sh-Zh-7'
           git config --global user.email 'zhihaoshen7@qq.com'
           git add -A
-          git commit -m "feat: update db file"
-          git push
+          git diff-index --quiet HEAD || git commit -m "feat: update db file" && git push
 
       - name: Depoly to Vercel by web hook
         run: curl -X POST ${{ secrets.WEB_HOOK }}
