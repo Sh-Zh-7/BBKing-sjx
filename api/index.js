@@ -1,5 +1,5 @@
 const express = require('express')
-const quote = require('./routes/quote')
+const quote = require('./quote')
 
 const app = express()
 app.use(quote);
