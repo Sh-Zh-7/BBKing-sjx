@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+      - web
   pull_request:
     branches:
       - main
+      - web
 
 jobs:
   ci:
@@ -15,7 +17,6 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node: [14]
 
     steps:
       - name: Checkout
