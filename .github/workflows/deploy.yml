@@ -33,7 +33,7 @@ jobs:
           mv /tmp/bible.db ./bible.db
 
       - name: Commit db file for depolyment stage
-      - run: |
+        run: |
           git config --global user.name 'Sh-Zh-7'
           git config --global user.email 'zhihaoshen7@qq.com'
           git add -A
@@ -41,4 +41,4 @@ jobs:
           git push
 
       - name: Depoly to Vercel by web hook
-      - run: curl -X ${{ secrets.WEB_HOOK }}
+        run: curl -X ${{ secrets.WEB_HOOK }}
