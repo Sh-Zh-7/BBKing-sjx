@@ -1,2 +1,7 @@
 # IDE / Editor
 .idea
+
+# Vercel CLI
+.vercel
+
+*.db
