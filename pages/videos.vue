@@ -1,11 +1,10 @@
 <template>
   <figure>
     <Title title='鬼畜&二创合集' />
-    <div class='flex justify-center items-center'>
-      <button class='left-arrow' @click='handleClick'></button>
-      <iframe src="//player.bilibili.com/player.html?aid=456915447&bvid=BV1i5411h7zn&cid=231186469&page=1"
-              width='638' height='493'></iframe>
-      <button class='right-arrow' @click='handleClick'></button>
+    <div class='flex flex-wrap md:flex-nowrap justify-center items-center mx-20 md:mx-36'>
+      <iframe src="//player.bilibili.com/player.html?aid=456915447&bvid=BV1i5411h7zn&cid=231186469&page=1"></iframe>
+      <button class='left-arrow md:order-first w-full mr-10 mt-12 md:mt-0' @click='handleClick'></button>
+      <button class='right-arrow md:order-last w-full ml-10 mt-12 md:mt-0' @click='handleClick'></button>
     </div>
   </figure>
 </template>
@@ -23,18 +22,38 @@ export default {
 </script>
 
 <style scoped>
-.left-arrow, .right-arrow {
-  width: 256px;
-  height: 128px;
-  background-image: url("assets/arrow.png");
-  background-blend-mode: lighten;
-  background-size: 256px 128px;
+iframe {
+  height: 300px;
+  flex-basis: 100%;
 }
+
 .left-arrow {
-  margin-right: 0;
-  transform: rotate(90deg);
+  background-image: url("assets/left-arrow.png");
 }
 .right-arrow {
-  transform: rotate(-90deg);
+  background-image: url("assets/right-arrow.png");
+}
+
+.left-arrow, .right-arrow {
+  background-blend-mode: lighten;
+
+  width: 120px;
+  height: 64px;
+  background-size: 120px 64px;
+}
+
+@media (min-width: 768px) {
+  iframe {
+    width: 638px;
+    height: 493px;
+
+    flex-basis: auto;
+  }
+
+  .left-arrow, .right-arrow {
+    width: 64px;
+    height: 256px;
+    background-size: 64px 256px;
+  }
 }
 </style>

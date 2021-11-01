@@ -1,14 +1,16 @@
 <template>
   <main>
     <img src='/avatar.png' alt='avatar of sjx'
-         class='w-60 h-60 mx-auto mt-10 rounded-full border-green-600 border-4 p-2'>
-    <blockquote class='text-center font-bold text-green-700 text-6xl mx-72 mt-12 leading-normal'>
-      {{ quote }}
-    </blockquote>
-    <div class='mx-96 mt-16 flex justify-evenly'>
-      <button class='py-4 px-7 border-2 bg-green-600 rounded-2xl text-2xl'
+         class='w-44 h-44 md:w-52 md:h-52 mx-auto mt-10 rounded-full border-green-600 border-4 p-2'>
+    <div class='table mx-auto mt-10 md:mt-5'>
+      <blockquote class='table-cell align-middle text-center h-48 text-4xl md:text-5xl font-bold text-green-700'>
+        {{ quote }}
+      </blockquote>
+    </div>
+    <div class='mx-20 md:mx-60 lg:mx-96 mt-16 mb-16 flex justify-evenly'>
+      <button class='py-4 px-7 border-2 bg-green-600 rounded-2xl text-xl md:text-2xl'
               @click='getPrevQuote'>上一条</button>
-      <button class='py-4 px-7 border-2 border-gray-600 rounded-2xl text-2xl'
+      <button class='py-4 px-7 border-2 border-gray-600 rounded-2xl text-xl md:text-2xl'
               @click='getNextQuote'>下一条</button>
     </div>
   </main>
@@ -121,14 +123,31 @@ export default {
 </script>
 
 <style>
+blockquote {
+  width: 20rem;
+}
+
 blockquote::before, blockquote::after {
   content: '';
   display: inline-block;
   background-image: url("../assets/quote.png");
-  background-size: 64px 64px;
-  width: 64px;
-  height: 64px;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
 }
+
+@media (min-width: 768px) {
+  blockquote {
+    width: 44rem;
+  }
+
+  blockquote::before, blockquote::after {
+    background-size: 64px 64px;
+    width: 64px;
+    height: 64px;
+  }
+}
+
 blockquote::after {
   transform: rotate(180deg);
 }

@@ -1,23 +1,23 @@
 <template>
   <main>
-    <section class='flex items-center bg-gray-800 px-44 background'>
-      <h1 class='text-9xl flex-wrap text-white font-serif align-middle'>
+    <section class='flex flex-col lg:flex-row items-center bg-gray-800 px-10 md:px-32 background'>
+      <h1 class='text-8xl pt-10 md:text-9xl flex-wrap text-white font-serif text-center'>
         BBKing SJX
       </h1>
-      <img src='/man.png' alt='background_image'>
+      <img class='pb-8 lg:pb-0' src='/man.png' alt='background_image'>
     </section>
 
-    <section class='pb-10'>
+    <section class='mt-10 md:mt-16 pb-10'>
       <Title title='经典永流传' />
       <div class='flex items-center justify-center pt-6'>
         <div class='relative'>
           <img src='/avatar.png' alt='avatar of sjx'
-               class='rounded-full w-36 h-36 border-green-600 border-4'>
+               class='rounded-full w-28 h-28 md:w-36 md:h-36 border-green-600 border-4'>
           <!-- 做动画用的辅助标签 -->
           <div id='animate-assist-tag'
-               class='absolute w-36 h-36 top-0 rounded-full bg-green-600'></div>
+               class='absolute w-28 h-28 md:w-36 md:h-36 top-0 rounded-full bg-green-600'></div>
         </div>
-        <div class='ml-14'>
+        <div class='ml-5 md:ml-14'>
           <div class='w-5 h-5 triangle inline-block border-gray-600 border-2'></div>
           <div class='inline-block -ml-4 p-5 border-gray-600 border-2 rounded-2xl shadow-xl'>
             <p>月薪过万不是刚刚站在社会底层？</p>
