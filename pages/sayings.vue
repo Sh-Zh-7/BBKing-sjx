@@ -54,49 +54,30 @@ export default {
     this.maxIndex = this.$store.state.maxIndex;
 
     if (process.client) {
-      // 打开indexedDB, 创建object storage
-      const request = indexedDB.open(DB_NAME);
-      request.onsuccess = (event) => {
-        this.db = event.target.result;
-        // 查看之前的数据
-        getQuote(this.db, this.curIndex, async (event) => {
-          if (event.target.result) {
-            // 复用之前的数据
-            this.quote = event.target.result.quote;
-          } else {
-            // 获取数据并存储
-            const quotes = await this.$axios.$get('/api/saying');
-            this.quote = quotes[0];
-            addQuote(this.db, quotes);
-          }
-        })
-      };
-      request.onupgradeneeded = (evt) => {
-        evt.currentTarget.result.createObjectStore(
-          STORE_NAME, { keyPath: 'ID', autoIncrement: true }
-        )
-      };
-    }
-  },
-  mounted() {
-    // eslint-disable-next-line nuxt/no-env-in-hooks
-    if (process.client) {
-      if ('onpagehide' in window) {
-        window.addEventListener('pagehide', () => {
-          let isDeleteFinished = false;
-          const request = window.indexedDB.deleteDatabase(DB_NAME);
-
-          // 等到删除成功为止
-          request.onsuccess = () => {
-            isDeleteFinished = true;
-          }
-          while (!isDeleteFinished) {}
-        })
-      } else {
-        window.onbeforeunload = (event) => {
-          event.preventDefault();
-          window.indexedDB.deleteDatabase(DB_NAME);
-          return null;
+      // 删除之前的indexedDB
+      const deleteRequest = indexedDB.deleteDatabase(DB_NAME);
+      deleteRequest.onsuccess = deleteRequest.onerror = () => {
+        // 打开indexedDB, 创建object storage
+        const request = indexedDB.open(DB_NAME);
+        request.onsuccess = (event) => {
+          this.db = event.target.result;
+          // 查看之前的数据
+          getQuote(this.db, this.curIndex, async (event) => {
+            if (event.target.result) {
+              // 复用之前的数据
+              this.quote = event.target.result.quote;
+            } else {
+              // 获取数据并存储
+              const quotes = await this.$axios.$get('/api/saying');
+              this.quote = quotes[0];
+              addQuote(this.db, quotes);
+            }
+          })
+        };
+        request.onupgradeneeded = (evt) => {
+          evt.currentTarget.result.createObjectStore(
+            STORE_NAME, { keyPath: 'ID', autoIncrement: true }
+          )
         };
       }
     }
