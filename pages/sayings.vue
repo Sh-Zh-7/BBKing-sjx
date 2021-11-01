@@ -83,7 +83,14 @@ export default {
     if (process.client) {
       if ('onpagehide' in window) {
         window.addEventListener('pagehide', () => {
-          window.indexedDB.deleteDatabase(DB_NAME);
+          let isDeleteFinished = false;
+          const request = window.indexedDB.deleteDatabase(DB_NAME);
+
+          // 等到删除成功为止
+          request.onsuccess = () => {
+            isDeleteFinished = true;
+          }
+          while (!isDeleteFinished) {}
         })
       } else {
         window.onbeforeunload = (event) => {
