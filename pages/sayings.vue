@@ -8,9 +8,9 @@
       </blockquote>
     </div>
     <div class='mx-20 md:mx-60 lg:mx-96 mt-16 mb-16 flex justify-evenly'>
-      <button class='py-4 px-7 border-2 bg-green-600 rounded-2xl text-xl md:text-2xl'
+      <button class='py-4 px-3 md:px-7 border-2 bg-green-600 rounded-2xl text-xl md:text-2xl'
               @click='getPrevQuote'>上一条</button>
-      <button class='py-4 px-7 border-2 border-gray-600 rounded-2xl text-xl md:text-2xl'
+      <button class='py-4 px-3 md:px-7 border-2 border-gray-600 rounded-2xl text-xl md:text-2xl'
               @click='getNextQuote'>下一条</button>
     </div>
   </main>

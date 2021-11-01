@@ -19,7 +19,7 @@
         </div>
         <div class='ml-5 md:ml-14'>
           <div class='w-5 h-5 triangle inline-block border-gray-600 border-2'></div>
-          <div class='inline-block -ml-4 p-5 border-gray-600 border-2 rounded-2xl shadow-xl'>
+          <div class='inline-block w-44 md:w-72 -ml-4 p-5 border-gray-600 border-2 rounded-2xl shadow-xl'>
             <p>月薪过万不是刚刚站在社会底层？</p>
           </div>
         </div>

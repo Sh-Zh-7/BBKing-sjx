@@ -19,7 +19,7 @@ export default  {
 p::before, p::after {
   content: "";
   font-size: 0;
-  border-width: 3px 50px;
+  border-width: 3px 30px;
 
   --theme-green: rgb(52, 211, 153);
 }

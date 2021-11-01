@@ -1,6 +1,6 @@
 <template>
   <figure>
-    <Title title='鬼畜&二创合集' />
+    <Title title='鬼畜合集' />
     <div class='flex flex-wrap md:flex-nowrap justify-center items-center mx-20 md:mx-36'>
       <iframe src="//player.bilibili.com/player.html?aid=456915447&bvid=BV1i5411h7zn&cid=231186469&page=1"></iframe>
       <button class='left-arrow md:order-first w-full mr-10 mt-12 md:mt-0' @click='handleClick'></button>
@@ -37,9 +37,9 @@ iframe {
 .left-arrow, .right-arrow {
   background-blend-mode: lighten;
 
-  width: 120px;
-  height: 64px;
-  background-size: 120px 64px;
+  width: 64px;
+  height: 55px;
+  background-size: 64px 55px;
 }
 
 @media (min-width: 768px) {
