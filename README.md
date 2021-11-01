@@ -63,7 +63,7 @@ git checkout main  # 切换到文档项目
 
 由于本项目仅仅是作者兴趣使然的作品，在技术方面也有很多待改进的地方，比如：
 
-- [ ] 移除typescript依赖。
+- [x] 移除typescript依赖。
 - [ ] 适配移动端布局。
 - [ ] 移除tailwindcss依赖。
 
