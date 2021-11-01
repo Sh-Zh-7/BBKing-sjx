@@ -2,7 +2,19 @@
   <img src="sjx.png" alt="sjx's avatar" width=150 >
 </p>
 
-<h1 align="center">BB王-SJX</h1>
+<h1 align="center">BBKing SJX</h1>
+
+<p align="center">
+    <a href="https://github.com/Sh-Zh-7/BBKing-sjx" style="text-decoration:none" >
+        <img src="https://img.shields.io/github/stars/Sh-Zh-7/BBKing-sjx?color=orange" alt="star"/>
+    </a>
+    <a href="https://github.com/Sh-Zh-7/BBKing-sjx" style="text-decoration:none" >
+        <img src="https://img.shields.io/github/repo-size/Sh-Zh-7/BBKing-sjx" alt="Size"/>
+    </a>
+  <a href="https://github.com/Sh-Zh-7/BBKing-sjx/blob/main/LICENSE" style="text-decoration:none">
+        <img src="https://img.shields.io/github/issues/Sh-Zh-7/BBKing-sjx" alt="license"/>
+    </a>
+</p>
 
 # 这是什么？
 
