@@ -81,8 +81,16 @@ export default {
   mounted() {
     // eslint-disable-next-line nuxt/no-env-in-hooks
     if (process.client) {
-      document.onvisibilitychange = () => {
-        window.indexedDB.deleteDatabase(DB_NAME);
+      if ('onpagehide' in window) {
+        window.addEventListener('pagehide', () => {
+          window.indexedDB.deleteDatabase(DB_NAME);
+        })
+      } else {
+        window.onbeforeunload = (event) => {
+          event.preventDefault();
+          window.indexedDB.deleteDatabase(DB_NAME);
+          return null;
+        };
       }
     }
   },
