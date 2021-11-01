@@ -1,4 +1,6 @@
-<img src="sjx.png" width=150 align=center>
+<p align="center">
+  <img src="sjx.png" alt="sjx's avatar" width=150 >
+</p>
 
 <h1 align="center">BB王-SJX</h1>
 
