@@ -41,7 +41,7 @@ function addQuote(db, quotes) {
 
 export default {
   data: () => ({
-    quote: '',
+    quote: { sayings: '。。。' },
     db: null,
     // object storage的索引的缓存
     // 这里的初始值没有意义
