@@ -40,7 +40,7 @@ git checkout main  # 切换到文档项目
 
 1. 编写`bible.txt`文件，触发Github Action的CI脚本。
 2. 脚本里调用deno程序（url import，既摆脱了臃肿的node_modules，也不需要pip这种包管理器），构建sqlite数据库（主要是利用B+树的高性能读）。
-3. 切换到web分支，把web项目部署到vercel上。前端SSR，后端serverless，非常方便～。
+3. 切换到web分支，把web项目部署到vercel上。前端SSR，后端serverless，实惠又方便～。
 
 
 
