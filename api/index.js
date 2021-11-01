@@ -1,16 +1,19 @@
-const express = require('express')
-const quote = require('./quote')
+const express = require('express');
+const sqlite3 = require('sqlite3');
 
-const app = express()
-app.use(quote);
+const app = express();
+const db = new sqlite3.Database('bible.db');
+
+app.get('/saying', (_, response) => {
+  db.get("SELECT COUNT(*) AS count FROM bible", (err, result) => {
+    if (err) throw err;
+    const rowNum = result.count;
+    const randomID = Math.floor(Math.random() * rowNum);
+    db.get(`SELECT sayings FROM bible WHERE ID = ${randomID}`, (err, result) => {
+      if (err) throw err;
+      response.end(result.sayings);
+    })
+  })
+})
 
 module.exports = app
-
-// standalone服务器
-if (require.main === module) {
-  const port = process.env.PORT || 3001
-  app.listen(port, () => {
-    // eslint-disable-next-line no-console
-    console.log(`API server listening on port ${port}`)
-  })
-}
