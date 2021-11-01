@@ -14,20 +14,6 @@
   </main>
 </template>
 
-<style>
-blockquote::before, blockquote::after {
-  content: '';
-  display: inline-block;
-  background-image: url("../assets/quote.png");
-  background-size: 64px 64px;
-  width: 64px;
-  height: 64px;
-}
-blockquote::after {
-  transform: rotate(180deg);
-}
-</style>
-
 <script>
 const DB_NAME = 'sayings';
 const STORE_NAME = 'sayings';
@@ -133,3 +119,17 @@ export default {
 
 }
 </script>
+
+<style>
+blockquote::before, blockquote::after {
+  content: '';
+  display: inline-block;
+  background-image: url("../assets/quote.png");
+  background-size: 64px 64px;
+  width: 64px;
+  height: 64px;
+}
+blockquote::after {
+  transform: rotate(180deg);
+}
+</style>

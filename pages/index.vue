@@ -28,6 +28,15 @@
   </main>
 </template>
 
+<script>
+import Vue from 'vue'
+import Title from '~/components/Title.vue'
+
+export default Vue.extend({
+  components: { Title }
+})
+</script>
+
 <style>
 .background {
   background-image: url("/background.jpeg");
@@ -60,11 +69,3 @@
 }
 </style>
 
-<script lang="ts">
-import Vue from 'vue'
-import Title from '~/components/Title.vue'
-
-export default Vue.extend({
-  components: { Title }
-})
-</script>

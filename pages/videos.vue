@@ -10,6 +10,18 @@
   </figure>
 </template>
 
+<script>
+import Title from '../components/Title'
+export default {
+  components: { Title },
+  methods: {
+    handleClick() {
+      alert("没数据了，请各位多多创作");
+    }
+  }
+}
+</script>
+
 <style scoped>
 .left-arrow, .right-arrow {
   width: 256px;
@@ -26,15 +38,3 @@
   transform: rotate(-90deg);
 }
 </style>
-
-<script>
-import Title from '../components/Title'
-export default {
-  components: { Title },
-  methods: {
-    handleClick() {
-      alert("没数据了，请各位多多创作");
-    }
-  }
-}
-</script>

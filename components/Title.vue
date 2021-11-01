@@ -4,6 +4,17 @@
   </p>
 </template>
 
+<script>
+export default  {
+  props: {
+    title: {
+      type: String,
+      required: true,
+    }
+  }
+}
+</script>
+
 <style scoped>
 p::before, p::after {
   content: "";
@@ -25,14 +36,3 @@ p::after {
 }
 </style>
 
-<script lang='ts'>
-export default  {
-  props: {
-    title: {
-      type: String,
-      required: true,
-    }
-  }
-}
-
-</script>
