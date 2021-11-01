@@ -1,6 +1,7 @@
 export const state = () => ({
+  // IndexedDB索引从1开始
   curIndex: 1,
-  maxIndex: 1,
+  maxIndex: 5,
 });
 
 export const mutations = {

@@ -4,7 +4,7 @@
          class='w-44 h-44 md:w-52 md:h-52 mx-auto mt-10 rounded-full border-green-600 border-4 p-2'>
     <div class='table mx-auto mt-10 md:mt-5'>
       <blockquote class='table-cell align-middle text-center h-48 text-4xl md:text-5xl font-bold text-green-700'>
-        {{ quote }}
+        {{ quote.sayings }}
       </blockquote>
     </div>
     <div class='mx-20 md:mx-60 lg:mx-96 mt-16 mb-16 flex justify-evenly'>
@@ -29,20 +29,24 @@ function getQuote(db, key, successCb) {
   request.onsuccess = successCb;
 }
 
-function addQuote(db, quote) {
-  db
+function addQuote(db, quotes) {
+  const objStore = db
     .transaction(STORE_NAME, "readwrite")
-    .objectStore(STORE_NAME)
-    .add({ quote });
+    .objectStore(STORE_NAME);
+
+  quotes.forEach((quote) => {
+    objStore.add({quote})
+  });
 }
 
 export default {
   data: () => ({
     quote: '',
     db: null,
-    // object storage的索引，从1开始
-    curIndex: 1,
-    maxIndex: 1,
+    // object storage的索引的缓存
+    // 这里的初始值没有意义
+    curIndex: 0,
+    maxIndex: 0,
   }),
 
   created() {
@@ -60,9 +64,10 @@ export default {
             // 复用之前的数据
             this.quote = event.target.result.quote;
           } else {
-            // 获取第一条数据并存储
-            this.quote = await this.$axios.$get('/api/saying');
-            addQuote(this.db, this.quote);
+            // 获取数据并存储
+            const quotes = await this.$axios.$get('/api/saying');
+            this.quote = quotes[0];
+            addQuote(this.db, quotes);
           }
         })
       };
@@ -94,18 +99,18 @@ export default {
   methods: {
     async getNextQuote() {
       this.curIndex++;
-      if (this.curIndex > this.maxIndex) {
-        // 如果是一条全新的数据
-        this.maxIndex = this.curIndex;
+      if (this.curIndex + 2 >= this.maxIndex) {
+        // 缓存快不够了，继续批量请求
+        this.maxIndex += 5;
 
-        this.quote = await this.$axios.$get('/api/saying');
-        addQuote(this.db, this.quote);
-      } else {
-        // 直接从indexedDB缓存中获取
-        getQuote(this.db, this.curIndex, (event) => {
-          this.quote = event.target.result.quote;
+        this.$axios.$get('/api/saying').then(quotes => {
+          addQuote(this.db, quotes)
         })
       }
+
+      getQuote(this.db, this.curIndex, (event) => {
+        this.quote = event.target.result.quote;
+      })
     },
     getPrevQuote() {
       if (this.curIndex > 1) {
