@@ -8,7 +8,13 @@
 <script>
 import Navigation from '../components/Navigation'
 import Copyright from '../components/Copyright'
+import { deleteDB } from 'idb'
 export default {
-  components: { Copyright, Navigation }
+  components: { Copyright, Navigation },
+  async beforeCreate() {
+    if (process.client) {
+      await deleteDB('sayings');
+    }
+  }
 }
 </script>

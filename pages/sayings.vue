@@ -17,27 +17,33 @@
 </template>
 
 <script>
+// 方案一：
+// 批量获取后端数据存在indexedDB中，便于检索上一条数据
+// 索引保存在vuex中，切换视图后也能回到原来的记录
+// 退出/刷新页面触发删除数据库，保证下次进来看到全新的数据
+// 缺陷：
+// 1. 退出/刷新的onbeforeunload支持很差
+// 在以webkit为内核的ios浏览器（safari，qq）上完全不支持
+// 替代品onpagehide语义和onbeforeunload也不一致
+// 比如退出页面的时候就无法触发
+// 2. 删除数据库太慢
+// 即便是开发模式，无网络延迟的条件下
+// 在PC机上也能感受到明显的时延
+
+// 方案二：
+// 舍弃视图切换记住索引的功能，即，去掉vuex
+// 舍弃删除数据库的功能，在旧的数据库上进行更新
+// 引入新的state——maxCount记住数据库最大数目
+// 这个maxCount记录在localStorage中
+// 缺点是和老的方案不兼容
+
+// 方案三：
+// 改用社区的Promise封装
+import { openDB } from 'idb'
+
 const DB_NAME = 'sayings';
 const STORE_NAME = 'sayings';
-
-function getQuote(db, key, successCb) {
-  const request = db
-    .transaction(STORE_NAME, "readonly")
-    .objectStore(STORE_NAME)
-    .get(key);
-
-  request.onsuccess = successCb;
-}
-
-function addQuote(db, quotes) {
-  const objStore = db
-    .transaction(STORE_NAME, "readwrite")
-    .objectStore(STORE_NAME);
-
-  quotes.forEach((quote) => {
-    objStore.add({quote})
-  });
-}
+const VERSION = 1;
 
 export default {
   data: () => ({
@@ -49,36 +55,24 @@ export default {
     maxIndex: 0,
   }),
 
-  created() {
+  async created() {
     this.curIndex = this.$store.state.curIndex;
     this.maxIndex = this.$store.state.maxIndex;
 
     if (process.client) {
-      // 删除之前的indexedDB
-      const deleteRequest = indexedDB.deleteDatabase(DB_NAME);
-      deleteRequest.onsuccess = deleteRequest.onerror = () => {
-        // 打开indexedDB, 创建object storage
-        const request = indexedDB.open(DB_NAME);
-        request.onsuccess = (event) => {
-          this.db = event.target.result;
-          // 查看之前的数据
-          getQuote(this.db, this.curIndex, async (event) => {
-            if (event.target.result) {
-              // 复用之前的数据
-              this.quote = event.target.result.quote;
-            } else {
-              // 获取数据并存储
-              const quotes = await this.$axios.$get('/api/saying');
-              this.quote = quotes[0];
-              addQuote(this.db, quotes);
-            }
-          })
-        };
-        request.onupgradeneeded = (evt) => {
-          evt.currentTarget.result.createObjectStore(
+      this.db = await openDB(DB_NAME, VERSION, {
+        upgrade(db) {
+          db.createObjectStore(
             STORE_NAME, { keyPath: 'ID', autoIncrement: true }
           )
-        };
+        }});
+      const quote = await this.db.get(STORE_NAME, this.curIndex);
+      if (quote) {
+        this.quote = quote;
+      } else {
+        const quotes = await this.$axios.$get('/api/saying');
+        await Promise.all(quotes.map(quote => this.db.add(STORE_NAME, quote)));
+        this.quote = quotes[0];
       }
     }
   },
@@ -98,21 +92,17 @@ export default {
         // 缓存快不够了，继续批量请求
         this.maxIndex += 5;
 
-        this.$axios.$get('/api/saying').then(quotes => {
-          addQuote(this.db, quotes)
+        this.$axios.$get('/api/saying').then(async quotes => {
+          await Promise.all(quotes.map(quote => this.db.add(STORE_NAME, quote)));
         })
       }
 
-      getQuote(this.db, this.curIndex, (event) => {
-        this.quote = event.target.result.quote;
-      })
+      this.quote = await this.db.get(STORE_NAME, this.curIndex);
     },
-    getPrevQuote() {
+    async getPrevQuote() {
       if (this.curIndex > 1) {
         --this.curIndex;
-        getQuote(this.db, this.curIndex, (event) => {
-          this.quote = event.target.result.quote;
-        })
+        this.quote = await this.db.get(STORE_NAME, this.curIndex);
       } else {
         alert("没有数据了呕");
       }
