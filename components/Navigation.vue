@@ -7,7 +7,7 @@
       <NuxtLink to='/sayings'>
         <span class='text-lg md:text-xl font-medium text-white px-3 md:px-10'>醒世恒言</span>
       </NuxtLink>
-      <NuxtLink to='/videos'>
+      <NuxtLink to='/media'>
         <span class='text-lg md:text-xl font-medium text-white px-3 md:px-10'>父亲们の爱</span>
       </NuxtLink>
       <NuxtLink to='/about'>
