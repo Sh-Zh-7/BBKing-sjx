@@ -11,7 +11,7 @@
       <button class='py-4 px-3 md:px-7 border-2 bg-green-600 rounded-2xl text-xl md:text-2xl'
               @click='getPrevQuote'>上一条</button>
       <button class='py-4 px-3 md:px-7 border-2 border-gray-600 rounded-2xl text-xl md:text-2xl'
-              @click='getNextQuote'>下一条</button>
+              @click='throttleGetNext'>下一条</button>
     </div>
   </main>
 </template>
@@ -40,6 +40,7 @@
 // 方案三：
 // 改用社区的Promise封装
 import { openDB } from 'idb'
+import _ from 'lodash'
 
 const DB_NAME = 'sayings';
 const STORE_NAME = 'sayings';
@@ -75,6 +76,8 @@ export default {
         this.quote = quotes[0];
       }
     }
+
+    this.throttleGetNext = _.throttle(this.getNextQuote, 300);
   },
   beforeDestroy() {
     this.$store.commit(
@@ -84,19 +87,20 @@ export default {
         maxIndex: this.maxIndex,
       }
     );
+    this.throttleGetNext.cancel();
   },
   methods: {
+    // 防止控制台报错
+    throttleGetNext: () => {},
     async getNextQuote() {
       this.curIndex++;
       if (this.curIndex + 2 >= this.maxIndex) {
         // 缓存快不够了，继续批量请求
         this.maxIndex += 5;
-
         this.$axios.$get('/api/saying').then(async quotes => {
           await Promise.all(quotes.map(quote => this.db.add(STORE_NAME, quote)));
         })
       }
-
       this.quote = await this.db.get(STORE_NAME, this.curIndex);
     },
     async getPrevQuote() {
