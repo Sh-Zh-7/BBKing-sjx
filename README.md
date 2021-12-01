@@ -2,7 +2,7 @@
   <img src="sjx.png" alt="sjx's avatar" width=150 >
 </p>
 
-<h1 align="center">BBKing SJX</h1>
+<h1 align="center">「世说鑫语」</h1>
 
 <p align="center">
     <a href="https://github.com/Sh-Zh-7/BBKing-sjx" style="text-decoration:none" >
@@ -18,7 +18,7 @@
 
 # 这是什么？
 
-这是一个专门收录SJX语录或者鬼畜作品的网站。这些语录或者鬼畜作品源自SJX所在的各种QQ群/讨论组，这些群一旦解散，这些人类圣经就很难找回了。为了拯救人类，BBKing-SJX这个网站便应运而生。
+这是一个专门收录SJX语录或者鬼畜作品的网站。这些语录或者鬼畜作品源自SJX所在的各种QQ群/讨论组，这些群一旦解散，这些人类圣经就很难找回了。为了拯救人类，「世说鑫语」这个网站便应运而生。
 
 
 
