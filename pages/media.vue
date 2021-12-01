@@ -28,14 +28,14 @@ export default {
   methods: {
     handleClickLeft() {
       if (this.index === 0) {
-        console.log("没有数据了奥，请各位多多创作！");
+        alert("没有数据了奥，请各位多多创作！");
         return;
       }
       this.index--;
     },
     handleClickRight() {
       if (this.index === this.media.length - 1) {
-        console.log("没有数据了奥，请各位多多创作！");
+        alert("没有数据了奥，请各位多多创作！");
         return;
       }
       this.index++;
