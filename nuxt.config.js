@@ -2,7 +2,7 @@ export default {
   target: 'server',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'BBの神：SJX',
+    title: '世 说 鑫 语',
     htmlAttrs: {
       lang: 'zh-CN'
     },

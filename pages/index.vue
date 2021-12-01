@@ -1,8 +1,8 @@
 <template>
   <main>
-    <section class='flex flex-col lg:flex-row items-center bg-gray-800 px-10 md:px-32 background'>
-      <h1 class='text-8xl pt-10 md:text-9xl flex-wrap text-white font-serif text-center'>
-        BBKing SJX
+    <section class='flex flex-col lg:flex-row items-center bg-gray-800 lg:pl-44 background'>
+      <h1 class='text-7xl pt-10 md:text-9xl flex-wrap text-white font-serif text-center'>
+        世说鑫语
       </h1>
       <img class='pb-8 lg:pb-0' src='/man.png' alt='background_image'>
     </section>
