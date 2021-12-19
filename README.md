@@ -65,7 +65,7 @@ git checkout main  # 切换到文档项目
 同时，在技术方面也有很多待改进的地方，比如：
 
 - [x] 移除typescript依赖。
-- [ ] 适配移动端布局。
+- [x] 适配移动端布局。
 - [ ] 移除tailwindcss依赖。
 
 另外，Nuxt作为SSR框架很好，下次别用了XD。
